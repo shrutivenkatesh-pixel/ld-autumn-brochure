@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nesta | L&D Autumn Brochure</title>
+  <style>
+    body {
+      font-family: "Century Gothic", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#fdfbf7, #f8eee7);
+      color: #333;
+      background-image: url('https://www.transparenttextures.com/patterns/fallen-leaves.png');
+    }
+
+    header {
+      background: linear-gradient(90deg, #8c3b2d, #c94c4c, #eca86c);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .filters select, .search-bar input {
+      padding: 0.6rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-family: "Century Gothic", Arial, sans-serif;
+    }
+
+    .catalog {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .course-card {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-card h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+      color: #8c3b2d;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #8c3b2d;
+      color: white;
+      padding: 0.3rem 0.7rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-bottom: 0.6rem;
+      font-weight: bold;
+    }
+
+    .course-meta { font-size: 0.9rem; margin-bottom: 0.4rem; }
+    .facilitator { font-size: 0.9rem; color: #555; margin-bottom: 0.6rem; }
+    .benefits { margin: 0.8rem 0; font-size: 0.95rem; line-height: 1.4; font-style: italic; }
+    .signup a {
+      display: inline-block;
+      margin-top: auto;
+      background: #c94c4c;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+    }
+    .signup a:hover { background: #8c3b2d; }
+  </style>
+  <script>
+    function filterCourses() {
+      const searchInput = document.getElementById('searchInput').value.toLowerCase();
+      const audienceFilter = document.getElementById('audienceFilter').value;
+      const formatFilter = document.getElementById('formatFilter').value;
+      const monthFilter = document.getElementById('monthFilter').value;
+
+      const cards = document.getElementsByClassName('course-card');
+      for (let card of cards) {
+        const text = card.innerText.toLowerCase();
+        const audience = card.getAttribute('data-audience');
+        const format = card.getAttribute('data-format');
+        const month = card.getAttribute('data-month');
+
+        const matchesSearch = text.includes(searchInput);
+        const matchesAudience = (audienceFilter === "all" || audience === audienceFilter);
+        const matchesFormat = (formatFilter === "all" || format === formatFilter);
+        const matchesMonth = (monthFilter === "all" || month === monthFilter);
+
+        if (matchesSearch && matchesAudience && matchesFormat && matchesMonth) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Nesta | L&D Autumn Brochure</h1>
+  </header>
+
+  <div class="container">
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search courses..." onkeyup="filterCourses()">
+      <select id="audienceFilter" onchange="filterCourses()">
+        <option value="all">All Audiences</option>
+        <option value="allstaff">All Staff</option>
+        <option value="band1-4">Band 1-4</option>
+        <option value="linemanager">Line Managers</option>
+        <option value="band4-6">Band 4-6</option>
+        <option value="capability">Capability Builders</option>
+        <option value="projectlead">Project Leads</option>
+      </select>
+      <select id="formatFilter" onchange="filterCourses()">
+        <option value="all">All Formats</option>
+        <option value="virtual">Virtual</option>
+        <option value="inperson">In Person</option>
+        <option value="hybrid">Hybrid</option>
+      </select>
+      <select id="monthFilter" onchange="filterCourses()">
+        <option value="all">All Months</option>
+        <option value="sep">September</option>
+        <option value="oct">October</option>
+        <option value="nov">November</option>
+        <option value="dec">December</option>
+      </select>
+    </div>
+
+    <div class="catalog">
+      <!-- CAREER MONTH -->
+      <div class="course-card" data-audience="allstaff" data-format="virtual" data-month="sep">
+        <span class="badge">Virtual</span>
+        <h2>Career Development Workshops</h2>
+        <div class="facilitator">Facilitator: Matt Smith</div>
+        <div class="course-meta"><strong>Audience:</strong> All Staff</div>
+        <div class="course-meta"><strong>Dates:</strong> 29 Sep, 8 Oct, 14 Oct</div>
+        <div class="course-meta"><strong>Duration:</strong> 1 hour each</div>
+        <div class="benefits">Write your career development plan and prepare for manager-managee conversations with tools and exercises.</div>
+        <div class="signup"><a href="#">Sign up on Hive</a></div>
+      </div>
+
+      <div class="course-card" data-audience="linemanager" data-format="inperson" data-month="sep">
+        <span class="badge">In Person</span>
+        <h2>High Expectations, High Support for Career Development</h2>
+        <div class="facilitator">Facilitator: Louisa Clarke</div>
+        <div class="course-meta"><strong>Audience:</strong> Line Managers & Non-Line Managers</div>
+        <div class="course-meta"><strong>Date:</strong> 30 Sep</div>
+        <div class="course-meta"><strong>Duration:</strong> 1 hour each</div>
+        <div class="benefits">Learn to hold and participate in career conversations with high expectation and high support.</div>
+        <div class="signup"><a href="#">Sign up on Hive</a></div>
+      </div>
+
+      <div class="course-card" data-audience="band1-4" data-format="virtual" data-month="oct">
+        <span class="badge">Virtual</span>
+        <h2>Core Work Skills</h2>
+        <div class="facilitator">Facilitator: Virtual Training Team</div>
+        <div class="course-meta"><strong>Audience:</strong> Band 1-4</div>
+        <div class="course-meta"><strong>Dates:</strong> 7 Oct, 16 Oct, 21 Oct</div>
+        <div class="course-meta"><strong>Duration:</strong> 100 mins each</div>
+        <div class="benefits">Assertiveness, Managing Upwards, Negotiation — practical skills with feedback.</div>
+        <div class="signup"><a href="#">Express your interest</a></div>
+      </div>
+
+      <div class="course-card" data-audience="band4-6" data-format="inperson" data-month="oct">
+        <span class="badge">In Person</span>
+        <h2>Business Networking</h2>
+        <div class="facilitator">Facilitator: Impact Factory</div>
+        <div class="course-meta"><strong>Audience:</strong> Band 4-6 working with external partners</div>
+        <div class="course-meta"><strong>Date:</strong> 7 Oct</div>
+        <div class="course-meta"><strong>Duration:</strong> 2 x half days</div>
+        <div class="benefits">Skills and confidence to build strong, strategic relationships and navigate stakeholder environments.</div>
+        <div class="signup"><a href="#">Express your interest</a></div>
+      </div>
+
+      <!-- USING INNOVATIVE METHODS -->
+      <div class="course-card" data-audience="projectlead" data-format="hybrid" data-month="oct">
+        <span class="badge">Hybrid</span>
+        <h2>Fundamentals of the Nesta Way (Revamp)</h2>
+        <div class="facilitator">Facilitators: Nesta's Methods Experts</div>
+        <div class="course-meta"><strong>Audience:</strong> Project Leads and Sponsors</div>
+        <div class="course-meta"><strong>Dates:</strong> Coming soon</div>
+        <div class="benefits">Learn Nesta's methods to help you make clear decisions on methods and proportionality during scoping.</div>
+        <div class="signup"><a href="#">Details coming soon</a></div>
+      </div>
+
+      <!-- USING AI -->
+      <div class="course-card" data-audience="allstaff" data-format="hybrid" data-month="sep">
+        <span class="badge">Hybrid/Virtual</span>
+        <h2>BOTcamp</h2>
+        <div class="facilitator">Facilitator: Matt Smith</div>
+        <div class="course-meta"><strong>Audience:</strong> All Staff</div>
+        <div class="course-meta"><strong>Dates:</strong> 2, 10, 16, 24 Sep</div>
+        <div class="course-meta"><strong>Duration:</strong> 1 hour each</div>
+        <div class="benefits">Grow your use of AI: Scribe, Thinker, Scholar, Designer. Write faster, brainstorm, research, and create.</div>
+        <div class="signup"><a href="#">Sign up on Hive</a></div>
+      </div>
+
+      <div class="course-card" data-audience="allstaff" data-format="virtual" data-month="sep">
+        <span class="badge">Virtual</span>
+        <h2>AI Office Hours</h2>
+        <div class="facilitator">Hosted by Discovery & L&D</div>
+        <div class="course-meta"><strong>Audience:</strong> All Staff</div>
+        <div class="course-meta"><strong>Dates:</strong> Fortnightly</div>
+        <div class="course-meta"><strong>Duration:</strong> 30 mins</div>
+        <div class="benefits">Drop-in sessions to explore quick practical AI applications, suited to newer AI users.</div>
+        <div class="signup"><a href="#">No sign-up needed</a></div>
+      </div>
+
+      <!-- LEADERSHIP & PURPOSE DRIVEN PERFORMANCE -->
+      <div class="course-card" data-audience="allstaff" data-format="virtual" data-month="oct">
+        <span class="badge">Virtual</span>
+        <h2>PDP Deep Dive: Giving and Receiving Feedback</h2>
+        <div class="facilitator">Facilitators: Matt Smith & Serena Clayton</div>
+        <div class="course-meta"><strong>Audience:</strong> All Staff</div>
+        <div class="course-meta"><strong>Date:</strong> 22 Oct</div>
+        <div class="course-meta"><strong>Duration:</strong> 1 hour</div>
+        <div class="benefits">Use the SBIC model to give kind, specific, and helpful feedback; use the GGIFT model to receive feedback productively.</div>
+        <div class="signup"><a href="#">Sign up on Hive</a></div>
+      </div>
+
+      <div class="course-card" data-audience="allstaff" data-format="virtual" data-month="dec">
+        <span class="badge">Virtual</span>
+        <h2>PDP Deep Dive: Writing Effective Annual Goals</h2>
+        <div class="facilitator">Facilitators: Matt Smith & Serena Clayton</div>
+        <div class="course-meta"><strong>Audience:</strong> All Staff</div>
+        <div class="course-meta"><strong>Date:</strong> 2 Dec</div>
+        <div class="course-meta"><strong>Duration:</strong> 1 hour</div>
+        <div class="benefits">Refresh your annual goals and make them purposeful, SMART, and stretchy.</div>
+        <div class="signup"><a href="#">Sign up on Hive</a></div>
+      </div>
+
+      <!-- CONSULTANCY SKILLS -->
+      <div class="course-card" data-audience="allstaff" data-format="virtual" data-month="nov">
+        <span class="badge">Virtual</span>
+        <h2>Core Consultancy Skills</h2>
+        <div class="facilitator">Facilitators: Matt Smith, Mark Byrne, Shruti Venkatesh</div>
+        <div class="course-meta"><strong>Audience:</strong> All Staff</div>
+        <div class="course-meta"><strong>Dates:</strong> 4 Nov, 11 Nov, 18 Nov</div>
+        <div class="course-meta"><strong>Duration:</strong> 1 hour each</div>
+        <div class="benefits">Deliver presentations, improve report clarity, and design impactful slides.</div>
+        <div class="signup"><a href="#">Sign up on Hive</a></div>
+      </div>
+
+      <div class="course-card" data-audience="capability" data-format="inperson" data-month="nov">
+        <span class="badge">In Person</span>
+        <h2>Design and Deliver Impactful Training</h2>
+        <div class="facilitator">Facilitator: Matt Smith</div>
+        <div class="course-meta"><strong>Audience:</strong> Capability Builders in Mission Teams</div>
+        <div class="course-meta"><strong>Dates:</strong> Coming soon</div>
+        <div class="course-meta"><strong>Duration:</strong> 2 x half days</div>
+        <div class="benefits">Bring your own capability building project and build it over two days with tailored design and facilitation.</div>
+        <div class="signup"><a href="#">Details coming soon</a></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
